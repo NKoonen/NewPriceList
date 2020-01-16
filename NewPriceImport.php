@@ -73,6 +73,7 @@ if(isset($_POST["upload"]))
 
    }
    $mysqli->close();
+   header("location: NewPriceImport.php?DONE=1");
   }
   else
   {
@@ -85,9 +86,9 @@ if(isset($_POST["upload"]))
  }
 }
 
-if(isset($_GET["updation"]))
+if(isset($_GET["DONE"]))
 {
- $message = '<label class="text-success">Product Price Updation Done</label>';
+ $message = '<label class="text-success">Price Update Done!</label>';
 }
 
 
@@ -103,14 +104,17 @@ if(isset($_GET["updation"]))
  <body>
   <br />
   <div class="container">
-   <h2 align="center">Update simple and combination prices on reference<br><small class="text-muted">Comma seperated</small></h2>
+   <h2 align="center">Update simple and combination prices on reference<br><small class="text-muted">Comma seperated csv file</small></h2>
    <br />
    <form method="post" enctype='multipart/form-data'>
-    <p><label>Please Select File(Only CSV Formate)</label>
+    <p><label>Please Select a csv File</label>
     <input type="file" name="product_file" /></p>
     <br />
     <input type="submit" name="upload" class="btn btn-info" value="Upload" />
    </form>
+   <center>
+     <h1><?php echo $message; ?></h1>
+   </center>
    <center style="padding-top: 250px;">
     <div class="card" style="width: 18rem;">
   <img src="https://inform-all.nl/wp-content/uploads/2019/10/logo.png" class="card-img-top" alt="...">
