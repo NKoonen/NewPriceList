@@ -1,6 +1,6 @@
 # New Price List Import for Prestashop
 
-This script lets you update prices based on reference of **Prestashop 1.7**. If you want to update these prices in **Prestashop 1.6** check: [Free module](https://www.prestashop.com/forums/topic/521717-free-module-new-price-list/). 
+This script lets you update prices based on reference of **Prestashop 1.7**. This also includes the combination products. It updates the prices according to the end price that is uploaded with a csv file. If you want to update these prices in **Prestashop 1.6** check: [Free module](https://www.prestashop.com/forums/topic/521717-free-module-new-price-list/). 
 
 # How to use
 
