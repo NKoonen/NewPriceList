@@ -56,7 +56,7 @@ if (isset($_POST["upload"])) {
                 $idProd = $mysqli->query($combiIdProd)->fetch_assoc()["id_product"];
                 $getProdInfo = "SELECT price FROM ".$prefix."product WHERE id_product = '$idProd' ";
                 $SimplePrice = $mysqli->query($getProdInfo)->fetch_assoc()['price'];
-                if ($SimplePrice > 0) {
+                if ($SimplePrice) {
                     $priceDif = $new_price - $SimplePrice;
                     if ($priceDif != 0) {
                         $combinationProduct = "
@@ -124,6 +124,8 @@ if (isset($_GET["DONE"])) {
                 <p class="card-text"><a href="https://inform-all.nl">Inform-All</a></p>
                 <a href="https://www.paypal.me/buymecoffee" class="btn btn-primary">Donate</a>
             </div>
+            <br><br>
+            V.1.1
         </div>
     </center>
 </div>
