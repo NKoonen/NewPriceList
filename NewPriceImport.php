@@ -1,5 +1,5 @@
 <?php
-$dbconfig = require_once dirname(__FILE__)."/app/config/parameters.php";
+$dbconfig = require_once dirname(__FILE__)."/../app/config/parameters.php";
 
 $mysqli = new mysqli(
     $dbconfig['parameters']['database_host'],
@@ -21,14 +21,27 @@ $prefix = $dbconfig['parameters']['database_prefix'];
 $message = '';
 $countUpdates = 0;
 
+function floatvalue($val){
+    $re = '/\.(\d{3})/m';
+    $subst = '$1';
+
+    return preg_replace($re, $subst, $val);
+}
+
 if (isset($_POST["upload"])) {
     if ($_FILES['product_file']['name']) {
+        if(isset($_POST['seperator_selector'])){
+            $seperator = ";";
+        }else{
+            $seperator = ",";
+        }
         $filename = explode(".", $_FILES['product_file']['name']);
         if (end($filename) == "csv") {
             $handle = fopen($_FILES['product_file']['tmp_name'], "r");
-            while ($data = fgetcsv($handle)) {
+            while ($data = fgetcsv($handle,0,$seperator)) {
                 $reference = mysqli_real_escape_string($mysqli, $data[0]);
-                $new_price = mysqli_real_escape_string($mysqli, $data[1]);
+                $new_price_bad_format = mysqli_real_escape_string($mysqli, $data[1]);
+                $new_price = floatvalue($new_price_bad_format);
 
                 // SIMPLE PRODUCTS
                 $simpleProduct = "
@@ -109,7 +122,10 @@ if (isset($_GET["DONE"])) {
     <br/>
     <form method="post" enctype='multipart/form-data'>
         <p><label>Please Select a csv File</label>
-            <input type="file" name="product_file"/></p>
+            <input type="file" name="product_file"/> <br>
+            <label>File is semicolon</label>
+            <input type="checkbox" name="seperator_selector" value="seperator_selector">
+        </p>
         <br/>
         <input type="submit" name="upload" class="btn btn-info" value="Upload"/>
     </form>
