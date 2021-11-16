@@ -8,4 +8,4 @@ Place the file 'NewPriceImport.php' in the root of your webshop. Then visit your
 
 ## How does the CSV file look?
 
-The first column of the file should only contain all the references (simple or combination products). The second column should only contain the NEW price and use a comma seperated file. That is it, nothing more, nothing less. This means, you don't have to think about the original 'impact of price' what Prestashop uses with combination products. You only use the final price in the csv file.
+The first column of the file should only contain all the references (simple or combination products). The second column should only contain the NEW price and use a comma seperated or if the checkbox is selected it accepts semicolon. That is it, nothing more, nothing less. This means, you don't have to think about the original 'impact of price' what Prestashop uses with combination products. You only use the final price in the csv file.
