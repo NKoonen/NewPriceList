@@ -21,11 +21,10 @@ $prefix = $dbconfig['parameters']['database_prefix'];
 $message = '';
 $countUpdates = 0;
 
-function floatvalue($val){
-    $re = '/\.(\d{3})/m';
-    $subst = '$1';
-
-    return preg_replace($re, $subst, $val);
+function floatvalue($val) {
+    $val = str_replace('.', '', $val);
+    $val = str_replace(',', '.', $val);
+    return floatval($val);
 }
 
 if (isset($_POST["upload"])) {
